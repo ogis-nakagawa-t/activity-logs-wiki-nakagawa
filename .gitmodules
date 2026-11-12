@@ -1,0 +1,4 @@
+[submodule ".claude/skills/jinba-consulting-pptx-skill"]
+	path = .claude/skills/jinba-consulting-pptx-skill
+	url = https://github.com/carnot-tech/jinba-consulting-pptx-skill
+	branch = main

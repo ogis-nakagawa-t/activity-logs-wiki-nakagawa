@@ -1,0 +1,8 @@
+CLAUDE.local.md
+.claude/settings.local.json
+.github/copilot/settings.local.json
+.DS_Store
+.playwright-mcp/
+__pycache__/
+.ua/
+.understand-anything/

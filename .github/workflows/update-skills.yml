@@ -1,0 +1,66 @@
+name: Update Agent Skills and Plugins
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # 毎週月曜 09:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-skills
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Update skills
+        run: npx --yes skills update -p -y
+        env:
+          GITHUB_TOKEN: ${{ secrets.SKILLS_TOKEN }}
+
+      - name: Update submodules
+        run: git submodule update --remote --checkout .claude/skills/jinba-consulting-pptx-skill
+
+      # .claude/settings.json の extraKnownMarketplaces で固定したプラグインの版（ref）を、
+      # 取得元の最新のタグ（vX.Y.Z）へ上げる。
+      - name: Update plugin pins
+        id: plugins
+        run: |
+          repo=$(jq -r '.extraKnownMarketplaces["understand-anything"].source.repo' .claude/settings.json)
+          current=$(jq -r '.extraKnownMarketplaces["understand-anything"].source.ref // empty' .claude/settings.json)
+          latest=$(git ls-remote --tags --refs "https://github.com/${repo}" \
+            | sed 's#.*refs/tags/##' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)
+          if [ -n "$latest" ] && [ "$latest" != "$current" ]; then
+            jq --indent 2 --arg ref "$latest" \
+              '.extraKnownMarketplaces["understand-anything"].source.ref = $ref' \
+              .claude/settings.json > "$RUNNER_TEMP/settings.json"
+            cp "$RUNNER_TEMP/settings.json" .claude/settings.json
+            echo "understand_anything=$latest" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain -- .claude/settings.json)" ]; then
+            git add .claude/settings.json
+            git commit -m "chore(claude): understand-anything プラグインを ${{ steps.plugins.outputs.understand_anything }} に更新した"
+          fi
+          git add -A .agents skills-lock.json .claude/skills/jinba-consulting-pptx-skill
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(skills): Agent Skills を更新した"
+          fi
+          if [ -n "$(git log '@{u}..HEAD' --oneline)" ]; then
+            git push
+          fi

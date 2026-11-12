@@ -1,0 +1,51 @@
+name: 改善の提案
+description: 手順・テンプレート・スクリプト・スキルの改善や新しい機能を提案する
+title: "[feat] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 困っていること・目的
+      description: 今の手順で困っていることや、実現したいことを書いてください。
+      placeholder: 週報の工数表を、毎回手で工数システムに転記している
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 提案する動き
+      description: チャットでの言い方の例と、どのファイルに何が書かれるとよいかを書いてください。
+      placeholder: |
+        「工数をCSVで出して」と言うと、今週の工数表を PJコード別に集計した CSV が 20_Weekly/ に書き出される
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 影響する範囲
+      description: 変更が必要になりそうな場所を選んでください（複数可）。
+      multiple: true
+      options:
+        - AGENTS.md・CLAUDE.md
+        - procedures/
+        - templates/・.foam/templates/
+        - scripts/
+        - .agents/skills/
+        - .claude/settings.json
+        - .github/hooks/・.vscode/・.mcp.json
+        - README.md
+        - その他
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 検討した代替案
+      description: 今のやり方での回避策や、ほかに考えた方法があれば書いてください。
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: 確認
+      options:
+        - label: 派生リポジトリの既存の記録（10_Daily/・90_Wiki/ など）との互換性に影響するか考えた
+        - label: 認証情報・顧客名・日次ノートの私的な内容を含めていない（含む場合は `***` にマスクした）
+          required: true

@@ -1,0 +1,98 @@
+{
+  "advisorModel": "opus",
+  "model": "sonnet",
+  "effortLevel": "medium",
+  "env": {
+    "CLAUDE_CODE_SUBAGENT_MODEL": "haiku",
+    "CLAUDE_CODE_USE_POWERSHELL_TOOL": "1"
+  },
+  "permissions": {
+    "allow": [
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File scripts/*)",
+      "PowerShell(Get-ChildItem*)",
+      "PowerShell(Test-Path*)",
+      "PowerShell(New-Item -ItemType Directory*)",
+      "PowerShell(Move-Item*)",
+      "PowerShell(git status*)",
+      "PowerShell(git diff*)",
+      "PowerShell(git log*)",
+      "PowerShell(git add*)",
+      "PowerShell(git commit*)",
+      "PowerShell(git remote*)",
+      "PowerShell(git fetch template*)",
+      "PowerShell(git show*)",
+      "PowerShell(git rev-parse*)",
+      "PowerShell(git submodule add*)",
+      "PowerShell(git submodule update*)",
+      "PowerShell(git submodule status*)",
+      "PowerShell(python .agents/skills/llm-wiki/scripts/check_evidence.py*)",
+      "PowerShell(python -I scripts/knowledge-graph-extend.py*)",
+      "Bash(rm -rf 90_Wiki/.ua/intermediate)"
+    ],
+    "deny": [
+      "PowerShell(Remove-Item*)",
+      "PowerShell(rm *)",
+      "PowerShell(del *)",
+      "PowerShell(erase *)",
+      "PowerShell(ri *)",
+      "PowerShell(rd *)",
+      "PowerShell(rmdir *)",
+      "PowerShell(git push*)",
+      "PowerShell(git reset --hard*)",
+      "mcp__foam__create_resource",
+      "mcp__foam__update_resource",
+      "mcp__foam__delete_resource",
+      "mcp__foam__move_resource",
+      "mcp__foam__add_tags",
+      "mcp__foam__remove_tags",
+      "mcp__foam__rename_tag",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "microsoft.docs.mcp",
+    "github",
+    "playwright",
+    "foam"
+  ],
+  "extraKnownMarketplaces": {
+    "understand-anything": {
+      "source": {
+        "source": "github",
+        "repo": "egonex-ai/understand-anything",
+        "ref": "v2.9.0"
+      },
+      "autoUpdate": true
+    }
+  },
+  "enabledPlugins": {
+    "understand-anything@understand-anything": true
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$input | powershell -NoProfile -ExecutionPolicy Bypass -File \"$env:CLAUDE_PROJECT_DIR/scripts/command-guard.ps1\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$input | powershell -NoProfile -ExecutionPolicy Bypass -File \"$env:CLAUDE_PROJECT_DIR/scripts/secret-scan.ps1\""
+          }
+        ]
+      }
+    ]
+  }
+}

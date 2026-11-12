@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "skills": {
+    "big-pics-little-words": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/big-pics-little-words/SKILL.md",
+      "computedHash": "eb86f8f9743dac8699ff2b37caad7e41266c0ca8fda540fda625162384ea9bce"
+    },
+    "design-artifact": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/design-artifact/SKILL.md",
+      "computedHash": "241a1c8c8ccf12a56252cecc8aaeba5c7798f6e5b94f51b1b43a492f8d489f9f"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "acda6bf83f200405aa200eb245448fdc11cfce43d97bc2d9b8bf13a27f362d95"
+    },
+    "diagram-design": {
+      "source": "cathrynlavery/diagram-design",
+      "sourceType": "github",
+      "skillPath": "skills/diagram-design/SKILL.md",
+      "computedHash": "bbdb797194dbbb3f29449549e940bd0d647abcf072f27e5aab6512c96cb4d793"
+    },
+    "git-conventions": {
+      "source": "ogis-dac-rd/copilot-custom-hayashi",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/git-conventions/SKILL.md",
+      "computedHash": "39ba0a12c45a47be588a7566d818797d3ed6e45e982107014c3c9ccfd195947a"
+    },
+    "html": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html/SKILL.md",
+      "computedHash": "efb3a609da133e0e22e600777c9467a0281cc98467cdce2805c53126e417f862"
+    },
+    "html-diagram": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-diagram/SKILL.md",
+      "computedHash": "b2bc1642ecf9bea473fd92993c87a1d05a1b53cc20192a8c04e78d86b47691db"
+    },
+    "html-plan": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-plan/SKILL.md",
+      "computedHash": "1ccf3225f6ecc19a21c684b5e50fd67eb627cc36d03627c15f35cd479e34b8b2"
+    },
+    "html-prototype": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-prototype/SKILL.md",
+      "computedHash": "c71292a9cc5f77970bf2d8b50a87213f4a014038c4f61a9da8f9b8b9ac272391"
+    },
+    "html-wireframe": {
+      "source": "plannotator/effective-html",
+      "sourceType": "github",
+      "skillPath": "skills/html-wireframe/SKILL.md",
+      "computedHash": "4506e8c9033431fc171a4953ffed582d2dea1432881f7f481a94fd54e6a0b660"
+    },
+    "japanese-tech-writing": {
+      "source": "ogis-dac-rd/copilot-custom-hayashi",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/japanese-tech-writing/SKILL.md",
+      "computedHash": "125c495e508d4454af38ce158113899aec495c7c6cb5f53b8d8c9e5cf19e6ecb"
+    },
+    "keep-steps-simple": {
+      "source": "ogis-dac-rd/copilot-custom-hayashi",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/keep-steps-simple/SKILL.md",
+      "computedHash": "40a5c337f9829223e9af8a6e7e153be727436fb5d5eac522df54c174c6e43228"
+    },
+    "natural-japanese": {
+      "source": "coji/natural-japanese",
+      "sourceType": "github",
+      "skillPath": "skills/natural-japanese/SKILL.md",
+      "computedHash": "cc03ed3294dbaf4744de05e078c197b6e42340e32945e653f2c5cdd5eebede7d"
+    },
+    "tech-options-pickup": {
+      "source": "ogis-dac-rd/copilot-custom-hayashi",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/tech-options-pickup/SKILL.md",
+      "computedHash": "cf667ee58562e61b94886a966e5dd48c49eed887e672a5201bee93e169309903"
+    },
+    "tech-research": {
+      "source": "ogis-dac-rd/copilot-custom-hayashi",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/tech-research/SKILL.md",
+      "computedHash": "a129aac920984e16013bdae160d286893d2d55e388e6d50446579a3cdff541e4"
+    }
+  }
+}
